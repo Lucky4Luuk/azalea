@@ -487,7 +487,7 @@ pub fn is_block_state_solid(block: BlockState) -> bool {
         return false;
     }
 
-    let registry_block = Box::<dyn azalea::blocks::Block>::from(block).as_registry_block();
+    let registry_block = Box::<dyn azalea_block::Block>::from(block).as_registry_block();
     let is_slab = azalea_registry::tags::blocks::SLABS.contains(&registry_block);
     let is_stair = azalea_registry::tags::blocks::STAIRS.contains(&registry_block);
     
