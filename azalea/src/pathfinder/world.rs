@@ -486,7 +486,12 @@ pub fn is_block_state_solid(block: BlockState) -> bool {
         // fast path
         return false;
     }
-    block.is_shape_full()
+
+    let registry_block = Box::<dyn azalea::blocks::Block>::from(block).as_registry_block();
+    let is_slab = azalea::registry::tags::blocks::SLABS.contains(&registry_block);
+    let is_stair = azalea::registry::tags::blocks::STAIRS.contains(&registry_block);
+    
+    block.is_shape_full() || is_slab || is_stair
 }
 
 #[cfg(test)]
